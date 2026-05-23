@@ -112,12 +112,12 @@ export default function EmployerProfile() {
             </div>
             <div>
               <dt>Recommendations</dt>
-              <dd>Top 10</dd>
+              <dd>{isMember ? 'Unlimited' : 'Top 10'}</dd>
             </div>
           </dl>
           <section className="membership compact">
             <h2>Membership</h2>
-            <p>{isMember ? 'Active member' : 'Free plan'}</p>
+            <p>{isMember ? 'Active - unlimited recommendations' : 'Free - top 10 recommendations'}</p>
             <button type="button" onClick={toggleMembership}>
               {isMember ? 'Cancel membership' : 'Activate membership'}
             </button>
