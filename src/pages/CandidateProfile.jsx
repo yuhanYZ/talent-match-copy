@@ -9,6 +9,8 @@ export default function CandidateProfile() {
   const [workExperience, setWorkExperience] = useState('')
   const [preferredWorkMode, setPreferredWorkMode] = useState('')
   const [preferredLocation, setPreferredLocation] = useState('')
+  const [expectedSalaryMin, setExpectedSalaryMin] = useState('')
+  const [expectedSalaryMax, setExpectedSalaryMax] = useState('')
   const [fullName, setFullName] = useState('')
   const [contact, setContact] = useState('')
   const [isMember, setIsMember] = useState(false)
@@ -47,6 +49,8 @@ export default function CandidateProfile() {
         setWorkExperience(candidate.work_experience || '')
         setPreferredWorkMode(candidate.preferred_work_mode || '')
         setPreferredLocation(candidate.preferred_location || '')
+        setExpectedSalaryMin(candidate.expected_salary_min === null || candidate.expected_salary_min === undefined ? '' : String(candidate.expected_salary_min))
+        setExpectedSalaryMax(candidate.expected_salary_max === null || candidate.expected_salary_max === undefined ? '' : String(candidate.expected_salary_max))
       }
 
       setLoading(false)
@@ -84,6 +88,8 @@ export default function CandidateProfile() {
         work_experience: workExperience,
         preferred_work_mode: preferredWorkMode || null,
         preferred_location: preferredLocation,
+        expected_salary_min: expectedSalaryMin === '' ? null : parseInt(expectedSalaryMin, 10),
+        expected_salary_max: expectedSalaryMax === '' ? null : parseInt(expectedSalaryMax, 10),
       })
 
     if (candidateError) {
@@ -136,6 +142,14 @@ export default function CandidateProfile() {
             <div>
               <dt>Location</dt>
               <dd>{preferredLocation || 'Not set'}</dd>
+            </div>
+            <div>
+              <dt>Expected salary</dt>
+              <dd>
+                {expectedSalaryMin || expectedSalaryMax
+                  ? `$${expectedSalaryMin || 0} - $${expectedSalaryMax || 'open'}`
+                  : 'Not set'}
+              </dd>
             </div>
           </dl>
           <div className="skill-cloud">
@@ -192,6 +206,14 @@ export default function CandidateProfile() {
           <label>
             Preferred location
             <input type="text" value={preferredLocation} onChange={e => setPreferredLocation(e.target.value)} />
+          </label>
+          <label>
+            Expected minimum salary
+            <input type="number" min="0" value={expectedSalaryMin} onChange={e => setExpectedSalaryMin(e.target.value)} />
+          </label>
+          <label>
+            Expected maximum salary
+            <input type="number" min="0" value={expectedSalaryMax} onChange={e => setExpectedSalaryMax(e.target.value)} />
           </label>
           <label>
             Skills (comma-separated)

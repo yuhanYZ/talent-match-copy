@@ -41,6 +41,34 @@ const candidates = [
   ['Lily Wright', 'candidate25@talentmatch.demo', '0401 234 125', 'Bachelor', 'Exercise Science', 2, ['Fitness Training', 'Coaching', 'Program Design', 'Customer Service', 'Motivation'], 'Designed fitness programs, coached clients, tracked progress, and supported member engagement at a local gym.', 'On-site', 'Brisbane', false],
 ]
 
+const salaryPrefs = {
+  'candidate01@talentmatch.demo': [58000, 80000],
+  'candidate02@talentmatch.demo': [55000, 76000],
+  'candidate03@talentmatch.demo': [48000, 65000],
+  'candidate04@talentmatch.demo': [65000, 90000],
+  'candidate05@talentmatch.demo': [40000, 58000],
+  'candidate06@talentmatch.demo': [50000, 70000],
+  'candidate07@talentmatch.demo': [75000, 105000],
+  'candidate08@talentmatch.demo': [42000, 60000],
+  'candidate09@talentmatch.demo': [45000, 65000],
+  'candidate10@talentmatch.demo': [50000, 72000],
+  'candidate11@talentmatch.demo': [70000, 100000],
+  'candidate12@talentmatch.demo': [48000, 68000],
+  'candidate13@talentmatch.demo': [48000, 65000],
+  'candidate14@talentmatch.demo': [58000, 95000],
+  'candidate15@talentmatch.demo': [55000, 85000],
+  'candidate16@talentmatch.demo': [52000, 78000],
+  'candidate17@talentmatch.demo': [60000, 82000],
+  'candidate18@talentmatch.demo': [45000, 62000],
+  'candidate19@talentmatch.demo': [60000, 82000],
+  'candidate20@talentmatch.demo': [54000, 72000],
+  'candidate21@talentmatch.demo': [65000, 90000],
+  'candidate22@talentmatch.demo': [65000, 85000],
+  'candidate23@talentmatch.demo': [63000, 88000],
+  'candidate24@talentmatch.demo': [55000, 78000],
+  'candidate25@talentmatch.demo': [42000, 72000],
+}
+
 let seeded = 0
 let failed = 0
 
@@ -69,6 +97,7 @@ for (const candidate of candidates) {
   }
 
   const userId = authData.user.id
+  const [expectedSalaryMin, expectedSalaryMax] = salaryPrefs[email] ?? [null, null]
 
   const { error: profileError } = await client
     .from('profiles')
@@ -92,6 +121,8 @@ for (const candidate of candidates) {
       work_experience: workExperience,
       preferred_work_mode: preferredWorkMode,
       preferred_location: preferredLocation,
+      expected_salary_min: expectedSalaryMin,
+      expected_salary_max: expectedSalaryMax,
     })
 
   if (candidateError) {
