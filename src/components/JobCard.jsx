@@ -12,7 +12,7 @@ export default function JobCard({ job }) {
       <p>{job.location} | {job.work_mode}{job.job_type ? ` | ${job.job_type}` : ''}</p>
       <p>{job.required_experience} yr{job.required_experience !== 1 ? 's' : ''} exp | {job.required_education}</p>
       {salaryRange && <p>{salaryRange}</p>}
-      {job.score !== undefined && <p>Match score: {job.score}</p>}
+      {job.score !== undefined && <p>Match score: {job.score}%</p>}
       {job.required_skills?.length > 0 && (
         <p className="skills">{job.required_skills.join(', ')}</p>
       )}
