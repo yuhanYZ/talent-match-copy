@@ -25,7 +25,7 @@ nav {
   z-index: 10;
   background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid #dbe3ef;
-  padding: 0 32px;
+  padding: 0 clamp(22px, 3.5vw, 56px);
   min-height: 64px;
   display: flex;
   align-items: center;
@@ -90,6 +90,33 @@ main {
 
 main.dashboard {
   max-width: 1480px;
+}
+
+main.auth-page {
+  max-width: 720px;
+  min-height: calc(100vh - 64px);
+  margin: 0 auto;
+  padding: clamp(42px, 8vh, 88px) 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-panel {
+  width: min(100%, 560px);
+}
+
+.auth-panel h1 {
+  margin-bottom: 18px;
+}
+
+.auth-panel form {
+  max-width: none;
+  width: 100%;
+}
+
+.auth-switch {
+  margin: 12px 0 0;
 }
 
 h1 {
