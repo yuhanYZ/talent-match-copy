@@ -43,8 +43,8 @@ export default function JobDetail() {
     <main>
       <h1>{job.title}</h1>
       {company && <p className="subtitle">{company.company_name}</p>}
-      <p>{job.location} &middot; {job.work_mode}{job.job_type ? ` · ${job.job_type}` : ''}</p>
-      <p>{job.required_experience} yr{job.required_experience !== 1 ? 's' : ''} experience required &middot; {job.required_education}</p>
+      <p>{job.location} | {job.work_mode}{job.job_type ? ` | ${job.job_type}` : ''}</p>
+      <p>{job.required_experience} yr{job.required_experience !== 1 ? 's' : ''} experience required | {job.required_education}</p>
       {salaryRange && <p><strong>Salary:</strong> {salaryRange}</p>}
       {job.required_skills?.length > 0 && (
         <p><strong>Skills:</strong> {job.required_skills.join(', ')}</p>
