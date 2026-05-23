@@ -157,7 +157,7 @@ export default function CandidateProfile() {
           </div>
           <section className="membership compact">
             <h2>Membership</h2>
-            <p>{isMember ? 'Active - unlimited recommendations' : 'Free - top 10 recommendations'}</p>
+            <p>{isMember ? 'Active member' : 'Free plan'}</p>
             <button type="button" onClick={toggleMembership}>
               {isMember ? 'Cancel membership' : 'Activate membership'}
             </button>
